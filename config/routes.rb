@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users
 
-  # unauthenticated do
+  resources :notes
+
+  unauthenticated do
     root "pages#home"
-  # end
+  end
+
+  authenticated :user do
+    root "notes#index", as: :authenticate_root
+  end
 end
