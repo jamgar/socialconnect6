@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :notes
-  root "pages#home"
+
+  # unauthenticated do
+    root "pages#home"
+  # end
 end
