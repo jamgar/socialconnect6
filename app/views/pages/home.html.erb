@@ -20,20 +20,25 @@
 </nav>
 
 <section class="container bg-white mx-auto">
+  <% if Rails.env.production? %>
+    <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+      <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+      <span class="sr-only">Info</span>
+      <div>
+        Please note this is not a production app. This app is currently for demo purposes. Your account and information you post may be removed.
+      </div>
+    </div>
+  <% end %>
     <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div class="mr-auto place-self-center lg:col-span-7">
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
               Six degrees of Separation
             </h1>
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
-              You may be six or fewer social connections away from each other. Connect with someone today.
+              You may be six or fewer social connections away from each other. Connect with someone today on <span class="text-blue-700 font-medium">Social Connect 6<span>.
             </p>
-            <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300">
-              Sign up
-            </a>
-            <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
-              Log in
-            </a> 
+            <%= link_to "Sign up", new_user_registration_path, class: "inline-flex items-center justify-center px-5 py-3 mr-3 text-font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300" %>
+            <%= link_to "Log in", new_user_session_path, class: "inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100" %>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
             <%= image_tag "connection6-hero.png"%>
