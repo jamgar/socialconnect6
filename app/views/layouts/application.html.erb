@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+    <%= render "shared/navigation" if current_user %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
