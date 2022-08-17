@@ -1,0 +1,12 @@
+<h1>Editing post</h1>
+
+<%= turbo_frame_tag dom_id(@post) do %>
+  <%= render "form", post: @post %>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this post", @post %> |
+  <%= link_to sanitize("&larr; Back to posts"), posts_path %>
+</div>

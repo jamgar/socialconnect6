@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(post) do %>
+<div class="border mb-2 p-4 rounded-sm bg-white">
+  <div class="flex">
+    <p class="mr-auto">
+      <%= post.content %>
+    </p>
+    <div class="flex">
+      <%= link_to "Edit", edit_post_path(post), class: "mr-2 text-green-600" %>
+      <%= button_to "Delete", post_path(post), method: :delete, class: "text-red-600" %>
+    </div>
+  </div>
+</div>
+<% end %>

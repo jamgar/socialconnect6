@@ -1,7 +1,15 @@
 <div class="navigation flex shadow-sm items-center px-4 bg-white sticky top-0 z-10">
   <%= link_to "Social Connect 6", root_path, class: "self-center text-xl font-semibold text-blue-700 hover:text-blue-800 whitespace-nowrap mr-auto py-4" %>
-  <div class="inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white">
-    <div class="relative" data-controller="dropdown">
+  <div class="flex inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white">
+    <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+      <li>
+        <%= link_to "Feed", posts_path, class: "block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" %>
+      </li>
+      <li>
+        <%#= link_to "Log in", new_user_session_path, class: "block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" %>
+      </li>
+    </ul>
+    <div class="relative py-4" data-controller="dropdown">
       <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
         <span class="appearance-none flex items-center inline-block text-gray-700">
           <% if current_user %>
