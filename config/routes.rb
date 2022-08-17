@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  # unauthenticated do
+  unauthenticated do
     root "pages#home"
-  # end
+  end
 
-  # authenticated :user do
-  #   root "posts#index", as: :authenticate_root
-  # end
+  authenticated :user do
+    root "posts#index", as: :authenticate_root
+  end
 end
