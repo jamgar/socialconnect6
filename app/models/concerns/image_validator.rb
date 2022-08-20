@@ -1,0 +1,2 @@
+class ImageValidator < UploadValidator
+end

@@ -1,9 +1,16 @@
 <%= turbo_frame_tag dom_id(post) do %>
-<div class="border mb-2 p-4 rounded-sm bg-white">
-  <div class="flex">
-    <p class="mr-auto">
-      <%= post.content %>
-    </p>
+<div class="border mb-2 rounded-sm bg-white">
+  <div class="flex border-b p-4 text-xs text-gray-600">
+    <p class="mr-auto"><%= post.user.email %></p>
+    <p><%= post.created_at %></p>
+  </div>
+  <% if post.image.attached? %>
+    <div class="flex items-center max-h-96 overflow-hidden">
+      <%= image_tag url_for(post.image), class: "w-full" %>
+    </div>
+  <% end %>
+  <div class="px-2 py-4">
+    <p class="text-gray-900"><%= post.content %></p>
     <div class="flex">
       <%= link_to "Edit", edit_post_path(post), class: "mr-2 text-green-600" %>
       <%= button_to "Delete", post_path(post), method: :delete, class: "text-red-600" %>
