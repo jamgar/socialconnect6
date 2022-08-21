@@ -2,7 +2,7 @@
 <div class="border mb-2 rounded-sm bg-white">
   <div class="flex border-b p-4 text-xs text-gray-600">
     <p class="mr-auto"><%= post.user.email %></p>
-    <p><%= post.created_at %></p>
+    <p><%= post.created_at.strftime("%b %d, %Y") %></p>
   </div>
   <% if post.image.attached? %>
     <div class="flex items-center max-h-96 overflow-hidden">
