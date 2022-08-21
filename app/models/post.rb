@@ -4,5 +4,5 @@ class Post < ApplicationRecord
 
 
   validates :image, image: true
-  validates :content, presence: true, unless: :image
+  validates :content, presence: true
 end

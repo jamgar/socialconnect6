@@ -1,26 +1,30 @@
-<%= form_with(model: post, class: "mb-4") do |form| %>
-  <% if post.errors.any? %>
-    <%= render "shared/form_errors", resource: @post %>
-  <% end %>
+<div class="border rounded-sm p-4 mb-4 bg-white">
+  <%= form_with(model: post) do |form| %>
+    <% if post.errors.any? %>
+      <%= render "shared/form_errors", resource: @post %>
+    <% end %>
 
-  <% if post.image.attached? %>
-    <div class="flex items-center max-h-96 overflow-hidden">
-      <%= image_tag url_for(post.image), class: "w-full" %>
-    </div>
-  <% end %>
-  <div class="mb-4">
-    <%= form.label :content, class: "block mb-2 text-sm font-medium text-gray-900" %>
-    <%= form.text_area :content, autofocus: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
-  </div>
-
-  <% if !post.image.attached? %>
+    <% if post.image.attached? %>
+      <div class="flex items-center max-h-96 overflow-hidden">
+        <%= image_tag url_for(post.image), class: "w-full" %>
+      </div>
+    <% end %>
     <div class="mb-4">
-      <%= form.label :image, class: "block mb-2 text-sm font-medium text-gray-900" %>
-      <%= form.file_field :image, accept: ".jpg, .jpeg, .png" %>
+      <%= form.label :content, class: "block mb-2 text-sm font-medium text-gray-900" %>
+      <%= form.text_area :content, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+
+    <% if !post.persisted? %>
+      <div class="mb-4" data-controller="upload">
+        <%= form.label :image, class: "text-white bg-gray-400 hover:bg-gray-500 mb-2 px-5 py-2 rounded-lg text-sm font-medium focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer" %>
+        <span data-upload-target="output">No file chosen...</span>
+        <%= form.file_field :image, data: { upload_target: "name" }, direct_upload: true, accept: ".jpg, .jpeg, .png", hidden: true %>
+      </div>
+    <% end %>
+
+    <div class="text-right">
+      <%= form.submit "Submit", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
+      <%= link_to "Cancel", posts_path, class: "ml-2 bg-gray-200 py-2.5 px-5 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full sm:w-auto text-center" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.submit "Submit", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
-  </div>
-<% end %>
+</div>

@@ -51,6 +51,13 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.3.tgz#71f08e958883af64f6a20489318b5e95d2c6dc5b"
   integrity sha512-Iefl21FZD+ck1di6xSHMYzSzRiNJTHV4NrAzCfDfqc/wPz4xncrP8f2/fJ+2jzwKIaDn76UVMsALh7R5OzsF8Q==
 
+"@rails/activestorage@^7.0.3-1":
+  version "7.0.3-1"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.0.3-1.tgz#1b17d830fe065b2f73cc7aaea4dd1a4177bee6cf"
+  integrity sha512-8tDzsfVyJtkq/nxRT8dHuyYaZMfWQy8Qkm/InIBmf/e3vZ3kyLMF7yJ88qZf6ghbNgjHbjrJdh6wNoXnJjvKjw==
+  dependencies:
+    spark-md5 "^3.0.1"
+
 "@tailwindcss/forms@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.2.tgz#4ef45f9916dcb37838cbe7fecdcc4ba7a7c2ab59"
@@ -587,6 +594,11 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+spark-md5@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
