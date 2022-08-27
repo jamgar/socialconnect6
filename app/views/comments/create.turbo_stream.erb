@@ -1,0 +1,7 @@
+<% if @comment.parent_id %>
+  <%= turbo_stream.append "comment_#{@comment.parent_id}_replies", partial: "replies/reply", locals: { reply: @comment } %>
+  <%= turbo_stream.update "comment_#{@comment.parent_id}_new_reply", "" %>
+<% else %>
+  <%= turbo_stream.append "#{dom_id(@post)}_comments", partial: "comments/comment", locals: { comment: @comment } %>
+  <%= turbo_stream.update "#{dom_id(@post)}_new_comment", "" %>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="">
+  <div class="py-2 pl-4">
+    <div class="flex text-xs text-gray-600">
+      <p class="mr-auto"><%= reply.user.email %></p>
+      <p><%= reply.created_at.strftime("%b %d, %Y") %></p>
+    </div>
+    <p class="my-1 py-1 px-2 bg-gray-100 rounded">
+      <%= reply.content %>
+    </p>
+  </div>
+</div>

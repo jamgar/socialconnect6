@@ -1,20 +1,46 @@
-<%= turbo_frame_tag dom_id(post) do %>
 <div class="border mb-2 rounded-sm bg-white">
-  <div class="flex border-b p-4 text-xs text-gray-600">
-    <p class="mr-auto"><%= post.user.email %></p>
-    <p><%= post.created_at.strftime("%b %d, %Y") %></p>
-  </div>
-  <% if post.image.attached? %>
-    <div class="flex items-center max-h-96 overflow-hidden">
-      <%= image_tag url_for(post.image), class: "w-full" %>
+  <%= turbo_frame_tag dom_id(post) do %>
+    <div class="flex border-b p-4 text-xs text-gray-600 items-center">
+      <p class="mr-auto"><%= post.user.email %></p>
+      <p><%= post.created_at.strftime("%b %d, %Y") %></p>
+      <div class="inline-block text-sm pl-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white mt-4 lg:mt-0">
+        <div class="relative" data-controller="dropdown">
+          <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+            <span class="appearance-none flex items-center inline-block text-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+              </svg>
+            </span>
+          </div>
+          <div data-dropdown-target="menu" class="absolute right-0 mt-2 hidden">
+            <div class="bg-white shadow rounded border overflow-hidden">
+              <%= link_to "Edit", edit_post_path(post), class: 'no-underline block px-4 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+              <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: "Are you sure?"} }, class: 'no-underline block px-4 py-3 text-red-700 bg-white hover:bg-gray-300 whitespace-nowrap'  %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if post.image.attached? %>
+      <div class="flex items-center max-h-96 overflow-hidden">
+        <%= image_tag url_for(post.image), class: "w-full" %>
+      </div>
+    <% end %>
+    <div class="px-2 py-4">
+      <p class="text-gray-900"><%= post.content %></p>
+    </div>
+    <div class="mb-2 px-4">
+      <%= link_to new_post_comment_path(post), data: { turbo_frame: "#{dom_id(post)}_new_comment" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+        </svg>
+      <% end %>
     </div>
   <% end %>
-  <div class="px-2 py-4">
-    <p class="text-gray-900"><%= post.content %></p>
-    <div class="flex">
-      <%= link_to "Edit", edit_post_path(post), class: "mr-2 text-green-600" %>
-      <%= button_to "Delete", post_path(post), method: :delete, form: { data: { turbo_confirm: "Are you sure?"} }, class: "text-red-600" %>
+  <%= turbo_frame_tag "#{dom_id(post)}_new_comment" %>
+  <%= turbo_frame_tag "#{dom_id(post)}_comments" do %>
+    <div>
+      <%= render post.comments %>
     </div>
-  </div>
+  <% end %>
 </div>
-<% end %>

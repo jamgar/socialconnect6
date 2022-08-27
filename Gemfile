@@ -54,6 +54,18 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+    # Basic Pry Setup
+  gem 'awesome_print' # pretty print ruby objects
+  gem 'pry', '~> 0.13.0' # Console with powerful introspection capabilities
+  gem 'pry-byebug' # Integrates pry with byebug
+  gem 'pry-doc' # Provide MRI Core documentation
+  gem 'pry-rails' # Causes rails console to open pry. `DISABLE_PRY_RAILS=1 rails c` can still open with IRB
+  
+  # Auxiliary Gems
+  # gem 'pry-rescue' # Start a pry session whenever something goes wrong
+  # gem 'pry-theme' # An easy way to customize Pry colors via theme files
+  # gem 'pry-stack_explorer' # Allows navigating Pry call stack
+  # gem 'binding_of_caller' # To evaluate code from a higher up call stack context
 end
 
 group :development do
@@ -65,6 +77,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  
 end
 
 group :test do
