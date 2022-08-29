@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy like unlike ]
 
   # GET /posts or /posts.json
   def index
@@ -54,6 +54,14 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.turbo_stream
     end
+  end
+
+  def like
+    @post.liked_by current_user
+  end
+
+  def unlike
+    @post.unliked_by current_user
   end
 
   private
