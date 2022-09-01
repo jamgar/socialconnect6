@@ -1,0 +1,32 @@
+<div class="md:flex pt-10">
+  <div class="border bg-white rounded px-4 py-8 md:ml-8 w-full md:w-80">
+    <div class="flex items-center mx-auto border-4 border-white rounded-full w-60 h-60 bg-gray-300 overflow-hidden relative">
+      <div id="profile_image" class="w-full h-full">
+        <% if @profile.profile_image.attached? %>
+          <%= image_tag url_for(@profile.profile_image), class: "w-full h-full object-cover" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative border bg-white rounded px-4 pt-8 mt-8 md:mt-0 md:ml-4 md:mr-8 w-full">
+    <h2 class="mb-4 text-2xl font-bold">
+    <%= @profile.display_name %>
+    </h2>
+    <h3 class="text-xl font-semibold">Bio:</h3>
+    <p class="m-2">
+    <%= @profile.bio %>
+    </p>
+
+    <% if current_user == @profile.user %>
+      <div class="absolute bottom-2 right-2 px-1 py-2">
+        <%= link_to "Edit", edit_profile_path(@profile), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container-md mx-auto py-4 sm:max-w-lg">
+  <div class="my-4 ">
+    <%= render @posts %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-md mx-auto py-8 max-w-lg sm:px-0 px-4">
+  <%= form_with(model: @profile)  do |form| %>
+    <% if @profile.errors.any? %>
+      <%= render "shared/form_errors", resource: @profile %>
+    <% end %>
+
+    <div class="pb-8 w-full md:w-80">
+      <div class="flex items-center border-4 border-white rounded-full w-60 h-60 bg-gray-300 overflow-hidden relative">
+        <div id="profile_image" class="w-full h-full">
+          <% if @profile.profile_image.attached? %>
+            <%= image_tag url_for(@profile.profile_image), class: "w-full h-full object-cover" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4" data-controller="upload">
+      <%= form.label :profile_image, class: "text-white bg-gray-400 hover:bg-gray-500 mb-2 px-5 py-2 rounded-lg text-sm font-medium focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer" %>
+      <span data-upload-target="output">No file chosen...</span>
+      <%= form.file_field :profile_image, data: { upload_target: "name" }, direct_upload: true, accept: ".jpg, .jpeg, .png", hidden: true %>
+    </div>
+    
+    <div class="mb-4">
+      <%= form.label :display_name, class: "block mb-2 text-sm font-medium text-gray-900" %>
+      <%= form.text_field :display_name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :bio, class: "block mb-2 text-sm font-medium text-gray-900" %>
+      <%= form.text_area :bio, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+
+    <div class="text-right">
+      <%= form.submit "Submit", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" %>
+      <%= link_to "Cancel", profile_path(@profile), class: "ml-2 bg-gray-200 py-2.5 px-5 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 w-full sm:w-auto text-center" %>
+    </div>
+  <% end %>
+</end>
