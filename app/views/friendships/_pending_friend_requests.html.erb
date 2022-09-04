@@ -5,7 +5,7 @@
         <%= avatar(friendship.friend) %>
       </div>
       <div class="ml-2">
-        <div><%= friendship.friend.profile.display_name %></div>
+        <div><%= show_name(friendship.friend) %></div>
       </div>
     </div>
     <%= button_to "Cancel", friendship_path(friendship), method: :delete, form: { data: { turbo_confirm: "Are you sure?"} }, class: "btn btn-ghost btn-xs"  %>

@@ -5,8 +5,8 @@
         <%= avatar(friend(friendship)) %>
       </div>
       <div class="ml-2">
-        <div><%= link_to friend(friendship).profile.display_name, profile_path(friend(friendship).profile) %></div>
-        <div class="text-xs text-gray-500">Friends since: <%= friendship.friended_at %></div>
+        <div><%= link_to show_name(friend(friendship)), profile_path(friend(friendship).profile) %></div>
+        <div class="text-xs text-gray-500">Friends since: <%= friendship.friended_at.strftime("%b %Y") %></div>
       </div>
     </div>
     <%= button_to "Cancel", friendship_path(friendship), method: :delete, form: { data: { turbo_confirm: "Are you sure?"} }, class: "btn btn-ghost btn-xs"  %>

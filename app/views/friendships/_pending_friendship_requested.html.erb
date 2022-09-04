@@ -5,7 +5,7 @@
         <%= avatar(friendship.user) %>
       </div>
       <div class="ml-2">
-        <div><%= friendship.user.profile.display_name %></div>
+        <div><%= show_name(friendship.user) %></div>
       </div>
     </div>
     <%= button_to "Accept", friendship_path(friendship.id), method: :patch, class: "btn btn-success btn-xs" %>
