@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_012355) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_03_122016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_012355) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.boolean "confirmed", default: false
+    t.datetime "friended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -102,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_012355) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "friendships", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
 end

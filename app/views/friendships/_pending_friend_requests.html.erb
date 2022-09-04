@@ -1,0 +1,14 @@
+<li class="py-2 px-4 w-full border-b">
+  <div class="flex items-center">
+    <div class="flex mr-auto">
+      <div class="appearance-none">
+        <%= avatar(friendship.friend) %>
+      </div>
+      <div class="ml-2">
+        <div><%= friendship.friend.profile.display_name %></div>
+      </div>
+    </div>
+    <%= button_to "Cancel", friendship_path(friendship), method: :delete, form: { data: { turbo_confirm: "Are you sure?"} }, class: "btn btn-ghost btn-xs"  %>
+  </div>
+</li>
+

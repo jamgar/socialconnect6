@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  resources :friendships, only: [:index, :create, :update, :destroy]
+
   resources :profiles, only: [:show, :edit, :update]
+
   resources :posts do
     resources :comments
     member do
@@ -8,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
 
   resources :comments do
     member do

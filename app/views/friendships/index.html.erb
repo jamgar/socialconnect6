@@ -1,0 +1,78 @@
+<div class="my-4 md:grid md:grid-cols-3 md:gap-4">
+  <div class="col-span-2">
+    <div class="py-2 px-0 sm:px-4">
+      <div class="border mb-2 rounded-sm bg-white">
+        <div class="bg-gray-50 border-b">
+          <span class="block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Friends (<%= confirmed_friendships.count %>) 
+          </span>
+        </div>
+        <ul class="text-sm font-medium text-gray-900 bg-white">
+          <% confirmed_friendships.each do |friendship| %>
+            <%= render partial: "friend", locals: { friendship: friendship } %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="py-2 w-full px-0 sm:px-4">
+      <div class="border mb-2 rounded-sm bg-white">
+        <div class="bg-gray-50 border-b">
+          <span class="block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Friend Requests (<%= pending_friend_requests.count %>) 
+          </span>
+        </div>
+        <ul class="text-sm font-medium text-gray-900 bg-white">
+          <% pending_friend_requests.each do |friendship| %>
+            <%= render partial: "pending_friend_requests", locals: { friendship: friendship } %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="py-2 w-full px-0 sm:px-4">
+      <div class="border mb-2 rounded-sm bg-white">
+        <div class="bg-gray-50 border-b">
+          <span class="block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Freindship Requested (<%= pending_friendship_requested.count %>) 
+          </span>
+        </div>
+        <ul class="text-sm font-medium text-gray-900 bg-white">
+          <% pending_friendship_requested.each do |friendship| %>
+            <%= render partial: "pending_friendship_requested", locals: { friendship: friendship } %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="py-2 w-full px-0 sm:px-4">
+      <div class="border mb-2 rounded-sm bg-white">
+        <div class="bg-gray-50 border-b">
+          <span class="block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Search 
+          </span>
+        </div>
+        <ul class="text-sm font-medium text-gray-900 bg-white">
+          <% @users.each do |user| %>
+            <% if current_user != user && !friend_or_pending?(user) %>
+              <li class="py-2 px-4 w-full border-b">
+                <div class="flex items-center">
+                  <div class="flex mr-auto">
+                    <div class="appearance-none">
+                      <%= avatar(user) %>
+                    </div>
+                    <div class="flex items-center ml-2">
+                      <div><%= user.profile.display_name %></div>
+                    </div>
+                  </div>
+                  <%= button_to "Request", friendships_path(user_id: user.id), class:"btn btn-accent btn-xs" %>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
