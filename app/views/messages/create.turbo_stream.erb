@@ -1,0 +1,2 @@
+<%#= turbo_stream.append "messages_#{@conversation.id}", partial: "messages/message", locals: { message: @message } %>
+<%= turbo_stream.update "message_new", partial: "messages/form", locals: { conversation: @conversation } %>

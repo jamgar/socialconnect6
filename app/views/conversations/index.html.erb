@@ -1,0 +1,19 @@
+<div class="md:flex pt-10">
+  <div class="bg-whitepx-4 md:ml-4 w-full">
+    <%= turbo_frame_tag "conversation_#{current_user.id}" %>
+  </div>
+  <div class="card card-compact card-bordered rounded-sm bg-base-100 shadow my-4 md:my-0 md:mx-4 w-full md:w-80">
+    <div class="card-body overflow-hidden-y">
+      <h2 class="card-title border-b">Friends</h2>
+      <% confirmed_friendships.each do |friendship| %>
+        <div class="flex items-center">
+          <%= avatar(friend(friendship)) %>
+          <%= button_to show_name(friend(friendship)), 
+                conversations_path(recipient_id: friend(friendship)), 
+                data: { turbo_frame: "conversation_#{current_user.id}" }, 
+                class: "ml-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

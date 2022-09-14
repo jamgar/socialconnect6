@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :comments do
     member do
       post "like" => "comments#like"
@@ -21,6 +20,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:create]
+  end
+    
   unauthenticated do
     root "pages#home"
   end
