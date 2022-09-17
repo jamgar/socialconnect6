@@ -92,5 +92,3 @@ gem "devise", "~> 4.8"
 gem "cloudinary", "~> 1.23"
 
 gem "acts_as_votable", "~> 0.13.2"
-
-gem "phlex", "~> 0.2.1"
