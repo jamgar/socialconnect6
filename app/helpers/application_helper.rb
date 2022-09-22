@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def show_name(user)
     if user.profile.display_name.blank?
       user.email

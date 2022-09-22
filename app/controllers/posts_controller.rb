@@ -4,7 +4,12 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = current_user.display_posts.order(created_at: :desc)
+    @pagy, @posts = pagy_countless(current_user.display_posts.order(created_at: :desc), items: 2)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /posts/1 or /posts/1.json

@@ -7,9 +7,13 @@
     <%= render "form", post: Post.new %>
   <% end %>
   
-  <%= turbo_frame_tag "posts" do %>
-    <div class="my-4">
+  <div class="my-4">
+    <%= turbo_frame_tag "posts" do %>
       <%= render @posts %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
+  <div id="next_link">
+    <%= button_to sanitize("Next &rarr;"), pagy_url_for(@pagy, @pagy.next), class: "btn btn-outline btn-sm" %>
+  </div>
 </div>
