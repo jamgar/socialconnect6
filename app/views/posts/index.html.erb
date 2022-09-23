@@ -14,6 +14,6 @@
   </div>
 
   <div id="next_link">
-    <%= button_to sanitize("Next &rarr;"), pagy_url_for(@pagy, @pagy.next), class: "btn btn-outline btn-sm" %>
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </div>
 </div>

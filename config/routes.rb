@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   resources :profiles, only: [:show, :edit, :update]
 
   resources :posts do
-    collection do
-      post :index
-    end
     resources :comments
     member do
       post "like" => "posts#like"
