@@ -1,7 +1,10 @@
 <%= turbo_stream_from "messages_#{conversation.id}" %>
 <div data-controller="current" data-current-user-value="<%= current_user.id %>" class="card card-compact card-bordered rounded-sm w-full bg-base-100 shadow">
   <div id="conversation-box" class="card-body">
-    <h2 class="card-title"><%= show_name(recipient) %></h2>
+    <h2 class="card-title flex">
+      <%= avatar(recipient) %>
+      <%= show_name(recipient) %>
+    </h2>
     <ul class="border rounded-sm p-4 overflow-y-auto max-h-96" id="messages-list">
       <%= turbo_frame_tag "messages_#{conversation.id}" do %>
         <% conversation.messages.each do |message| %>

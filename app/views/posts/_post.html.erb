@@ -1,7 +1,12 @@
 <%= turbo_frame_tag dom_id(post) do %>
   <div class="border mb-2 rounded-sm bg-white">
       <div class="flex border-b p-4 text-xs text-gray-600 items-center">
-        <p class="mr-auto"><%= show_name(post.user) %></p>
+        <div class="flex mr-auto">
+          <div>
+            <%= avatar(post.user) %>
+          </div>
+          <p class="flex items-center ml-2"><%= show_name(post.user) %></p>
+        </div>
         <p><%= post.created_at.strftime("%b %d, %Y") %></p>
         <div class="inline-block text-sm pl-4 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white">
           <div class="relative" data-controller="dropdown">
