@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @pagy, @posts = pagy(current_user.display_posts.order(created_at: :desc), items: 2)
+    @pagy, @posts = pagy(current_user.display_posts.order(created_at: :desc), items: 25)
 
     respond_to do |format|
       format.html

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutoclickController from "./autoclick_controller"
+application.register("autoclick", AutoclickController)
+
 import CurrentController from "./current_controller"
 application.register("current", CurrentController)
 

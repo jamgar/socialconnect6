@@ -4,9 +4,10 @@
         <%= link_to(
             "Load more...",
             posts_path(page: @pagy.next),
-            class: "btn btn-sm",
+            class: "btn btn-sm btn-outline",
             data: {
-              turbo_frame: "page_handler"
+              turbo_frame: "page_handler",
+              controller: "autoclick"
             }
          ) %>    
       <% end %>
