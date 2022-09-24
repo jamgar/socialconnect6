@@ -1,0 +1,14 @@
+  <div id="pager" class="min-w-full my-8 flex justify-between">
+    <div>
+      <% if @pagy.next %>
+        <%= link_to(
+            "Load more...",
+            posts_path(page: @pagy.next),
+            class: "btn btn-sm",
+            data: {
+              turbo_frame: "page_handler"
+            }
+         ) %>    
+      <% end %>
+    </div>
+  </div>

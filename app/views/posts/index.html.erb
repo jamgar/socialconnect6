@@ -8,24 +8,14 @@
   <% end %>
   
   <div class="my-4">
-    <%= turbo_frame_tag "posts" do %>
+    <%= turbo_frame_tag "page_handler" %>
+    <div id="posts" class="min-w-full">
       <%= render @posts %>
-    <% end %>
+    </div>
+    <%= render "pager", pagy: @pagy %>
   </div>
 
   <div id="next_link">
     <%#== pagy_nav(@pagy) if @pagy.pages > 1 %>
-  </div>
-  <div id="pager" class="min-w-full my-8 flex justify-between">
-    <div>
-      <% if @pagy.prev %>
-        <%= link_to sanitize("&larr; Previous page"), posts_path(page: @pagy.prev), class: "btn btn-sm" %>    
-      <% end %>
-    </div>
-    <div>
-      <% if @pagy.next %>
-        <%= link_to sanitize("Next page &rarr;"), posts_path(page: @pagy.next), class: "btn btn-sm" %>    
-      <% end %>
-    </div>
   </div>
 </div>
