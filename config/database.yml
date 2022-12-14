@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: socialconnect6_production
   username: socialconnect6
   password: <%= ENV["SOCIALCONNECT6_DATABASE_PASSWORD"] %>
